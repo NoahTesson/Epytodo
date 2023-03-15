@@ -1,0 +1,29 @@
+SRC	=	src/main.c
+
+OBJ	=	$(SRC:.c=.o)
+
+NAME	=	mysh
+
+CC	=	gcc
+
+CPPFLAGS += -I ./includes -I ./lib/my
+
+LDFLAGS = -g3
+
+all:	$(NAME)
+
+$(NAME):	$(OBJ)
+	make -C lib/my
+	$(CC) -o $(NAME) $(OBJ) -L./lib -lmy $(LDFLAGS)
+
+clean:
+	$(RM) $(OBJ)
+	make -C lib/my clean
+
+fclean:	clean
+	make -C lib/my fclean
+	$(RM) $(NAME);
+
+re:	fclean all
+
+.PHONY:	all clean fclean re
