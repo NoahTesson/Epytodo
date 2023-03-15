@@ -17,6 +17,8 @@ clean:
 fclean:	clean
 	$(RM) $(NAME);
 
+tests_run:
+
 re:	fclean all
 
 .PHONY:	all clean fclean re
